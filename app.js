@@ -62,6 +62,10 @@ app.use((req,res,next) => {
     res.locals.currentUser = req.user; //done by ChatGPT BE CAREFULL
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
+    res.locals.currUser = req.user; 
+    //since we can't user req.user directly in ejs file | 
+    // req.user is used to display signup, logout, login only one at a time 
+    // since all 3 can't be shown all at once
     next();
 });
 
