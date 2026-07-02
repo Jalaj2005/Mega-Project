@@ -16,11 +16,17 @@ async function main() {
     await mongoose.connect(MONGO_URL);
 };
 
+// const initDB = async () => {
+//     await Listing.deleteMany({});
+//     initData.data.map((obj) => ({...obj, owner: "6a3f5aa6e3cea8846fd9bbdd"}));
+//     await Listing.insertMany(intiData.data);
+//     console.log("data was initialized");
+// };
 const initDB = async () => {
-    await Listing.deleteMany({});
-    initData.data.map((obj) => ({...obj, owner: "6a3f5aa6e3cea8846fd9bbdd"}));
-    await Listing.insertMany(intiData.data);
-    console.log("data was initialized");
+  await Listing.deleteMany({});
+  const newListings = initData.data.map((obj) => ({...obj, owner: "6a3f5aa6e3cea8846fd9bbdd" }));
+  await Listing.insertMany(newListings);
+  console.log("data was initialized");
 };
 
 initDB();

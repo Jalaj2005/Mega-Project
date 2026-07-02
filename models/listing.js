@@ -9,15 +9,22 @@ const listingSchema = new Schema({
         required: true,
     },
     description: String,
-    image: {
-        type: Object,
-        default:
-            "https://images.unsplash.com/photo-1760715658357-57df8f045b8e?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
-        set: (v) => 
-            v === "" 
-        ? "https://images.unsplash.com/photo-1760715658357-57df8f045b8e?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687" 
+image: {
+    filename: {
+      type: String,
+      default: "listingimage",
+    },
+    url: {
+      type: String,
+      // The default image to show if the field is entirely missing
+      default: "https://images.unsplash.com/photo-1625505826533-5c80aca7d157?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
+      // The 'set' function catches if the user submits the form leaving the image link blank (an empty string)
+      set: (v) => 
+        v === "" 
+        ? "https://images.unsplash.com/photo-1625505826533-5c80aca7d157?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" 
         : v,
     },
+  },
     price: Number,
     location: String,
     country: String,
