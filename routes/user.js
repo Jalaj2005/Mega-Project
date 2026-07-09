@@ -19,7 +19,7 @@ router.post("/signup", wrapAsync(async (req, res) => {
         const newUser = new User({ email, username });
         const registeredUser = await User.register(newUser, password);
         console.log(registeredUser);
-        req.login(registeredUse, (err) => { // this req.login block so that after sign up automatic log in happens
+        req.login(registeredUser, (err) => { // this req.login block so that after sign up automatic log in happens
             if(err) {
                 return next(err);
             }
